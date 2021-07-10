@@ -10,7 +10,22 @@ target_url = ['https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.nav
 
 for i, url in enumerate(target_url):
     try:
-        pass
+        #웹 수신 정보 읽기
+        response = req.urlopen(url)
+
+        # 수신 내용
+        contents = response.read()
+        print("---------------------------------------")
+
+        #상태 정보 중간 출력
+        print('Header info-{} : {}'.format(i, response.info()))
+        print('HTTP Status Code: {}'.format(response.getcode()))
+        print()
+        print("---------------------------------------")
+        
+        with open(path_url[i], 'wb') as c:
+            c.write(contents)
+
     except HTTPError as e:
         print("Download failed.")
         print("HTTPError code : ", e.code)
