@@ -19,3 +19,27 @@ print('getcode : {}'.format(mem.getcode()))
 print('read : {}'.format(mem.read(100).decode('utf-8')))
 print('parse : {}'.format(urlparse('http://www.encar.co.kr?test=test')))
 print('parse : {}'.format(urlparse('http://www.encar.co.kr?test=test').query))
+
+#기본 요청2(ipify)
+API = "http://api.ipify.org"
+
+#Get 방식 parameter
+values = {
+    'format': 'json'
+}
+
+print('before param : {}'.format(values))
+params = urllib.parse.urlencode(values)
+print('after param : {}'.format(params))
+
+# 요청 URL 생성
+URL = API + "?" + params
+print('요청 URL = {}'.format(URL))
+
+# 수신 데이터 읽기
+data = urllib.request.urlopen(URL).read()
+
+# 수신 데이터 디코딩
+text = data.decode('UTF-8')
+print('response : {}'.format(text))
+
